@@ -12,6 +12,12 @@ Example Usage:
     dps = pydps.dps_psu('COM3', 1) # port name, slave address
 
     print(dps.getModel()) #Should show 5005 for dps5005
+    
+    dps.setKeyLock(True) #Lock keys
+    
+    dps.setVoltage(12) #Set Voltage to 12V
+    dps.setOutput(True) #Enable Output
+    
     print(dps.getVoltage()) #returns the measured output voltage
     print(dps.getCurrent()) #Prints measured output current in A
 
@@ -23,3 +29,6 @@ Example Usage:
 
     print(dat["power"]) #Prints measured power in W
     print(dat["i-out"]) #Prints measured output current in A
+    
+    dps.setKeyLock(False) #Unlock keys
+    
