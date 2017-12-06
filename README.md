@@ -4,18 +4,31 @@ A small helper library using minimalmodbus for the popular dps5005 power supply 
 Dependencies:
 minimalmodbus and serial
 
+
 Example Usage:
 
-  import pydps
+    import pydps
 
-  dps = pydps.dps_psu('COM3', 1) # port name, slave address
+    dps = pydps.dps_psu('COM3', 1) # port name, slave address
 
-  print(dps.getModel()) #Should show 5005 for dps5005
-  print(dps.getVoltage()) #returns the measured output voltage
-  print(dps.getCurrent()) #Prints measured output current in A
+    print(dps.getModel()) #Should show 5005 for dps5005
+    
+    dps.setKeyLock(True) #Lock keys
+    
+    dps.setVoltage(12) #Set Voltage to 12V
+    dps.setOutput(True) #Enable Output
+    
+    print(dps.getVoltage()) #returns the measured output voltage
+    print(dps.getCurrent()) #Prints measured output current in A
 
-  #or get the full dataset at once:
-  dat = dps.getFullData()
-  #Contained values: u-set, i-set, u-out, i-out, power, u-in, lock, protect, cvcc, on
-  print(dat["power"]) #Prints measured power in W
-  print(dat["i-out"]) #Prints measured output current in A
+    # or get the full dataset at once:
+
+    dat = dps.getFullData()
+
+    # Contained values: u-set, i-set, u-out, i-out, power, u-in, lock, protect, cvcc, on
+
+    print(dat["power"]) #Prints measured power in W
+    print(dat["i-out"]) #Prints measured output current in A
+    
+    dps.setKeyLock(False) #Unlock keys
+    
